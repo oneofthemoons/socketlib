@@ -1,19 +1,28 @@
-#include <exception>
-#include <string>
+#ifndef __SOCKET_EXCEPTION_H__
+#define __SOCKET_EXCEPTION_H__
 
-namespace SocketLib
+#include <string>
+#include <exception>
+
+namespace socketlib
 {
     class SocketException : std::exception
     {
+
+    public:
+        
+        SocketException(const std::string&);
+        const char* what();
+        
+    private:
+
         std::string whatMessage;
 
         SocketException()                            = delete;
         SocketException(const SocketException&)      = delete;
         SocketException &operator=(SocketException&) = delete;
-
-
-    public:
-        SocketException(const std::string&);
-        const char* what();
+    
     };
 }
+
+#endif // __SOCKET_EXCEPTION_H__
