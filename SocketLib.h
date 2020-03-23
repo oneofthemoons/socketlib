@@ -27,9 +27,6 @@ namespace socketlib
      */
     class Socket
     {
-        Socket()                   = delete;
-        Socket(Socket&)            = delete;
-        Socket &operator=(Socket&) = delete;
     public:
 
         Socket(AddressFamily addressFamily, Protocol protocol);
@@ -40,7 +37,8 @@ namespace socketlib
         
         void bindConnection(const std::string& ipAddress, unsigned short port);
 
-        std::string errnoToString(int _errno) const;
+        std::string ctorErrnoToString(int _errno) const;
+        std::string bindErrnoToString(int _errno) const;
 
     private:
 
@@ -50,10 +48,17 @@ namespace socketlib
             AddressFamily  addressFamily;
             std::string    ip;
             unsigned short port;
-        }   address_;
-        int socketFd_;
+        }        addressData_;
+        int      socketFd_;
+        sockaddr address_;
 
-        bool isIpV4AddressCorrect(const std::string& ipv4) const;
+        bool        isIpV4AddressCorrect(const std::string& ipv4) const;
+        uint32_t    sIpv4ToHostByteOrder(const std::string& ipv4) const;
+
+        Socket()                   = delete;
+        Socket(Socket&)            = delete;
+        Socket &operator=(Socket&) = delete;
+
     };
 }
 
