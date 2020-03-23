@@ -38,11 +38,22 @@ namespace socketlib
 
     protected:
         
+        void bindConnection(const std::string& ipAddress, unsigned short port);
+
         std::string errnoToString(int _errno) const;
 
     private:
 
+        class Address
+        {
+        public:
+            AddressFamily  addressFamily;
+            std::string    ip;
+            unsigned short port;
+        }   address_;
         int socketFd_;
+
+        bool isIpV4AddressCorrect(const std::string& ipv4) const;
     };
 }
 

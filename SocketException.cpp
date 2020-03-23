@@ -1,11 +1,11 @@
 #include <SocketException.h>
 
-SocketLib::SocketException::SocketException(const std::string& whatMessage)
+socketlib::SocketException::SocketException(const std::string& whatMessage)
 {
     this->whatMessage = whatMessage;
 }
 
-const char* SocketLib::SocketException::what()
+const char* socketlib::SocketException::what()
 {
     return whatMessage.c_str();
 }

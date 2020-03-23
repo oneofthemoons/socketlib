@@ -25,4 +25,7 @@ namespace socketlib
     };
 }
 
+#define MSG(msg) std::string(__func__) + ": " + msg
+#define MSGSTR(msg, str) MSG(msg) + " " + str 
+
 #endif // __SOCKET_EXCEPTION_H__
